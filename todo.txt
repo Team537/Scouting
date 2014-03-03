@@ -1,0 +1,4 @@
+-import teams
+-import matches (either from FMS or FRC Scout)
+-display match list
+-display match preview

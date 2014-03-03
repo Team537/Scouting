@@ -1,0 +1,10 @@
+﻿<Application
+    x:Class="Team537.Scouting.Viewer.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Team537.Scouting.Viewer">
+
+    <Application.Resources>
+        <x:String x:Key="AppName">FRC Scout Viewer 2014</x:String>
+    </Application.Resources>
+</Application>
