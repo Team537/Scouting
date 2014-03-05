@@ -123,6 +123,10 @@
     <Compile Include="Converters\EnumToItemsConverter.cs" />
     <Compile Include="Converters\TeamImageBitmapConverter.cs" />
     <Compile Include="Data\CompetitionDataStorage.cs" />
+    <Compile Include="Data\MatchDataImporter.cs" />
+    <Compile Include="ImportMatchData.xaml.cs">
+      <DependentUpon>ImportMatchData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportTeams.xaml.cs">
       <DependentUpon>ImportTeams.xaml</DependentUpon>
     </Compile>
@@ -136,9 +140,13 @@
     <Compile Include="ViewCompetition.xaml.cs">
       <DependentUpon>ViewCompetition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewMatch.xaml.cs">
+      <DependentUpon>ViewMatch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\TeamDetailsViewModel.cs" />
     <Compile Include="ViewModels\ViewCompetitionViewModel.cs" />
+    <Compile Include="ViewModels\ViewMatchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -166,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportMatchData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportTeams.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewCompetition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewMatch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

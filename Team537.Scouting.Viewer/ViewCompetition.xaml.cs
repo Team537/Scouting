@@ -136,9 +136,25 @@ namespace Team537.Scouting.Viewer
             this.Frame.Navigate(typeof(ImportTeams), this.defaultViewModel.Competition);
         }
 
+        private async void ImportMatchButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ImportMatchData), this.defaultViewModel.Competition);
+        }
+
         private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
             CompetitionDataStorage.SaveCompetition(this.defaultViewModel.Competition);
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!e.AddedItems.Any())
+            {
+                return;
+            }
+
+            var match = e.AddedItems.First() as Match;
+            this.Frame.Navigate(typeof(ViewMatch), match);
         }
     }
 }

@@ -44,7 +44,7 @@
                 <ColumnDefinition Width="400"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" DataContext="{Binding Team}">
-                <Image x:Name="TeamImage" Height="400" Source="{Binding ImagePath, Converter={StaticResource TeamImageBitmapConverter}}"></Image>
+                <Image x:Name="TeamImage" Height="400" ManipulationMode="All" Source="{Binding ImagePath, Converter={StaticResource TeamImageBitmapConverter}}"></Image>
 
                 <TextBlock Text="Comments" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
                 <TextBox DataContext="{Binding PitData2014}" Text="{Binding Comments, Mode=TwoWay}" Height="200" Margin="0,15,0,0" TextWrapping="Wrap"></TextBox>

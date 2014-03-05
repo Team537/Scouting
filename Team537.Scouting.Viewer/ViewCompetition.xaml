@@ -51,15 +51,54 @@
                     <ImageBrush Stretch="UniformToFill" />
                 </HubSection.Background>
                 <DataTemplate>
-                    <Grid>
-                        <ListView ItemsSource="{Binding Competition.Matches}">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Match" Grid.Column="0"  TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Red 1" Grid.Column="1"  TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Red 2" Grid.Column="2"  TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Red 3" Grid.Column="3"  TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Blue 1" Grid.Column="4" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Blue 2" Grid.Column="5" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Blue 3" Grid.Column="6" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="Action" Grid.Column="7" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
+                        </Grid>
+                        <ListView ItemsSource="{Binding Competition.Matches}" SelectionMode="Single" x:Name="MatchList" SelectionChanged="Selector_OnSelectionChanged">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MatchNumber}"></TextBlock>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock TextAlignment="Center" Text="{Binding MatchNumber}" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Red1.Number}" Grid.Column="1" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Red2.Number}" Grid.Column="2" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Red3.Number}" Grid.Column="3" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Blue1.Number}" Grid.Column="4" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Blue2.Number}" Grid.Column="5" />
+                                        <TextBlock TextAlignment="Center" Text="{Binding Blue3.Number}" Grid.Column="6" />
+                                        <Button Grid.Column="7">View</Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
             </HubSection>
             <HubSection Width="Auto" Header="Teams">
@@ -102,6 +141,7 @@
                 <StackPanel x:Name="LeftPanel" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
                     <AppBarButton x:Uid="Add" Icon="Add" Label="Add Team" x:Name="AddTeamButton" Click="AddTeamButton_OnClick" />
                     <AppBarButton x:Uid="ImportTeams" Icon="Import" Label="Import Teams" x:Name="ImportTeamsButton" Click="ImportTeamsButton_OnClick" />
+                    <AppBarButton x:Uid="ImportMatch" Icon="Import" Label="Import Match Data" x:Name="ImportMatchButton" Click="ImportMatchButton_OnClick" />
                 </StackPanel>
                 <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                     <AppBarButton x:Uid="Save" Icon="Save" Label="Save" x:Name="SaveButton" Click="SaveButton_OnClick"/>
