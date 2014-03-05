@@ -26,15 +26,17 @@ namespace Team537.Scouting.Viewer.Data
         public static async Task<Competition> LoadCompetition(Competition competition)
         {
             var filename = string.Format("{0}2014.json", competition.Name.Replace(" ", string.Empty));
-
-            var file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
-            if (file.IsAvailable)
+            
+            try
             {
+                var file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
                 var data = await FileIO.ReadTextAsync(file);
                 return JsonConvert.DeserializeObject<Competition>(data);
             }
-
-            return competition;
+            catch (Exception)
+            {
+                return competition;
+            }
         }
     }
 }

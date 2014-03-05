@@ -71,7 +71,13 @@ namespace Team537.Scouting.Viewer
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            if (this.defaultViewModel.Competition != null)
+            {
+                return;
+            }
+
             var competition = e.NavigationParameter as Competition;
+
             if (competition == null)
             {
                 var dialog = new MessageDialog("Invalid Competition Selected");
@@ -113,6 +119,13 @@ namespace Team537.Scouting.Viewer
         private void TeamsGridView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var team = e.ClickedItem as Team;
+            this.Frame.Navigate(typeof(TeamDetails), team);
+        }
+
+        private void AddTeamButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var team = new Team();
+            this.defaultViewModel.Competition.Teams.Add(team);
             this.Frame.Navigate(typeof(TeamDetails), team);
         }
 

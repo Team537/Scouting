@@ -49,5 +49,18 @@ namespace Team537.Scouting.Viewer.ViewModels
                 this.OnPropertyChanged();
             }
         }
+
+        public List<DriveTrainType> DriveTrainTypes
+        {
+            get
+            {
+                var values = new List<DriveTrainType>();
+                foreach (var value in Enum.GetValues(typeof(DriveTrainType)))
+                {
+                    values.Add((DriveTrainType)value);
+                }
+                return values;
+            }
+        } 
     }
 }
