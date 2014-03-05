@@ -30,6 +30,10 @@ namespace Team537.Scouting.Viewer.ViewModels
                 }
                 this.team = value;
                 this.OnPropertyChanged();
+                this.OnPropertyChanged("TractionWheel");
+                this.OnPropertyChanged("OmniWheel");
+                this.OnPropertyChanged("MecanumWheel");
+                this.OnPropertyChanged("Treads");
             }
         }
 
@@ -50,17 +54,114 @@ namespace Team537.Scouting.Viewer.ViewModels
             }
         }
 
-        public List<DriveTrainType> DriveTrainTypes
+        public bool TractionWheel
         {
             get
             {
+                return (this.team.PitData2014.WheelType & WheelType.Traction) == WheelType.Traction;
+            }
+            set
+            {
+                this.SetWheelType(WheelType.Traction, value);
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool OmniWheel
+        {
+            get
+            {
+                return (this.team.PitData2014.WheelType & WheelType.Omni) == WheelType.Omni;
+            }
+            set
+            {
+                this.SetWheelType(WheelType.Omni, value);
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool MecanumWheel
+        {
+            get
+            {
+                return (this.team.PitData2014.WheelType & WheelType.Mecanum) == WheelType.Mecanum;
+            }
+            set
+            {
+                this.SetWheelType(WheelType.Mecanum, value);
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool Treads
+        {
+            get
+            {
+                return (this.team.PitData2014.WheelType & WheelType.Treads) == WheelType.Treads;
+            }
+            set
+            {
+                this.SetWheelType(WheelType.Treads, value);
+                this.OnPropertyChanged();
+            }
+        }
+
+        private void SetWheelType(WheelType wheel, bool set)
+        {
+            if (set)
+            {
+                this.team.PitData2014.WheelType |= wheel;
+            }
+            else
+            {
+                this.team.PitData2014.WheelType &= ~wheel;
+            }
+        }
+
+        private DriveTrainType[] driveTrainTypes;
+
+        public DriveTrainType[] DriveTrainTypes
+        {
+            get
+            {
+                if (driveTrainTypes != null && driveTrainTypes.Any())
+                {
+                    return driveTrainTypes;
+                }
+
                 var values = new List<DriveTrainType>();
                 foreach (var value in Enum.GetValues(typeof(DriveTrainType)))
                 {
                     values.Add((DriveTrainType)value);
                 }
-                return values;
+
+                driveTrainTypes = values.ToArray();
+
+                return driveTrainTypes;
             }
-        } 
+        }
+
+        private RobotSide[] robotSides;
+
+        public RobotSide[] RobotSides
+        {
+            get
+            {
+                if (robotSides != null && robotSides.Any())
+                {
+                    return robotSides;
+                }
+
+                var values = new List<RobotSide>();
+                foreach (var value in Enum.GetValues(typeof(RobotSide)))
+                {
+                    values.Add((RobotSide)value);
+                }
+
+                robotSides = values.ToArray();
+
+                return robotSides;
+            }
+        }
     }
 }

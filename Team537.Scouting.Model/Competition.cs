@@ -16,6 +16,8 @@ namespace Team537.Scouting.Model
 
         private string imagePath;
 
+        private ObservableCollection<Team> teams;
+
         public string Name
         {
             get
@@ -69,12 +71,32 @@ namespace Team537.Scouting.Model
 
         public ObservableCollection<Match> Matches { get; private set; }
 
-        public ObservableCollection<Team> Teams { get; private set; }
+        public ObservableCollection<Team> Teams
+        {
+            get
+            {
+                return this.teams;
+            }
+            private set
+            {
+                if (Equals(value, this.teams))
+                {
+                    return;
+                }
+                this.teams = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public Competition()
         {
             Matches = new ObservableCollection<Match>();
             Teams = new ObservableCollection<Team>();
+        }
+
+        public void SortTeams()
+        {
+            Teams = new ObservableCollection<Team>(Teams.OrderBy(t => t.Number));
         }
     }
 }

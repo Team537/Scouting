@@ -123,6 +123,9 @@
     <Compile Include="Converters\EnumToItemsConverter.cs" />
     <Compile Include="Converters\TeamImageBitmapConverter.cs" />
     <Compile Include="Data\CompetitionDataStorage.cs" />
+    <Compile Include="ImportTeams.xaml.cs">
+      <DependentUpon>ImportTeams.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CaptureTeamPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportTeams.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

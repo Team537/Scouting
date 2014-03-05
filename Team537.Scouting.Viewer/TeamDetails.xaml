@@ -11,6 +11,7 @@
     xmlns:converters="using:Team537.Scouting.Viewer.Converters"
     xmlns:model="using:Team537.Scouting.Model"
     xmlns:system="using:System"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:TeamImageBitmapConverter x:Key="TeamImageBitmapConverter"></converters:TeamImageBitmapConverter>
@@ -54,8 +55,9 @@
                 <TextBlock Text="Name" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
                 <TextBox Text="{Binding Name, Mode=TwoWay}" Margin="0,15,0,0"></TextBox>
                 <TextBlock Text="Drive Train Type" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
-                <ComboBox ItemsSource="{Binding ElementName=pageRoot, Path=DataContext.DriveTrainTypes}"
-                          SelectedValue="{Binding PitData2014.DriveTrainType, Mode=TwoWay}" Margin="0,15,0,0">
+                <TextBlock Text="{Binding PitData2014.DriveTrainType}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
+                <ComboBox DataContext="{Binding PitData2014}" ItemsSource="{Binding ElementName=pageRoot, Path=DataContext.DriveTrainTypes, Mode=OneTime}"
+                          SelectedItem="{Binding DriveTrainType, Mode=TwoWay}" Margin="0,15,0,0">
                 </ComboBox>
                 <TextBlock Text="Size (l x w x h)" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
                 <TextBox DataContext="{Binding PitData2014}" Text="{Binding Size, Mode=TwoWay}" Margin="0,15,0,0"></TextBox>
@@ -72,30 +74,28 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Collector Side" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
-                        <ComboBox  Margin="0,15,0,0" DataContext="{Binding PitData2014}" SelectedValue="{Binding CollectorSide, Mode=TwoWay}">
-                            <ComboBoxItem>Front</ComboBoxItem>
-                            <ComboBoxItem>Back</ComboBoxItem>
-                            <ComboBoxItem>Left</ComboBoxItem>
-                            <ComboBoxItem>Right</ComboBoxItem>
+                        <TextBlock Text="{Binding PitData2014.CollectorSide}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0" />
+                        <ComboBox  Margin="0,15,0,0" DataContext="{Binding PitData2014}" 
+                                   ItemsSource="{Binding ElementName=pageRoot, Path=DataContext.RobotSides, Mode=OneTime}"
+                                   SelectedItem="{Binding CollectorSide, Mode=TwoWay}">
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Shooter Side" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
-                        <ComboBox  Margin="0,15,0,0" DataContext="{Binding PitData2014}" SelectedValue="{Binding ShooterSide, Mode=TwoWay}">
-                            <ComboBoxItem>Front</ComboBoxItem>
-                            <ComboBoxItem>Back</ComboBoxItem>
-                            <ComboBoxItem>Left</ComboBoxItem>
-                            <ComboBoxItem>Right</ComboBoxItem>
+                        <TextBlock Text="{Binding PitData2014.ShooterSide}" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0" />
+                        <ComboBox  Margin="0,15,0,0" DataContext="{Binding PitData2014}" 
+                                   ItemsSource="{Binding ElementName=pageRoot, Path=DataContext.RobotSides, Mode=OneTime}"
+                                   SelectedItem="{Binding ShooterSide, Mode=TwoWay}">
                         </ComboBox>
                     </StackPanel>
                     <TextBlock Grid.Row="1" Text="Wheels" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>
-                    <StackPanel Grid.Column="0" Grid.Row="2" DataContext="{Binding PitData2014}">
-                        <CheckBox Content="Traction" IsChecked="{Binding WheelType, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=1}"></CheckBox>
-                        <CheckBox Content="Omni" IsChecked="{Binding WheelType, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=2}"></CheckBox>
+                    <StackPanel Grid.Column="0" Grid.Row="2">
+                        <CheckBox Content="Traction" IsChecked="{Binding Path=DefaultViewModel.TractionWheel, ElementName=pageRoot, Mode=TwoWay}"></CheckBox>
+                        <CheckBox Content="Omni" IsChecked="{Binding Path=DefaultViewModel.OmniWheel, ElementName=pageRoot, Mode=TwoWay}"></CheckBox>
                     </StackPanel>
-                    <StackPanel Grid.Column="2" Grid.Row="2" DataContext="{Binding PitData2014}">
-                        <CheckBox Content="Mecanum" IsChecked="{Binding WheelType, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=4}"></CheckBox>
-                        <CheckBox Content="Treads" IsChecked="{Binding WheelType, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=8}"></CheckBox>
+                    <StackPanel Grid.Column="2" Grid.Row="2">
+                        <CheckBox Content="Mecanum" IsChecked="{Binding Path=DefaultViewModel.MecanumWheel, ElementName=pageRoot, Mode=TwoWay}"></CheckBox>
+                        <CheckBox Content="Treads" IsChecked="{Binding Path=DefaultViewModel.Treads, ElementName=pageRoot, Mode=TwoWay}"></CheckBox>
                     </StackPanel>
                 </Grid>
                 <TextBlock Text="Goalie Arm Description" Style="{StaticResource TitleTextBlockStyle}" Margin="0,15,0,0"></TextBlock>

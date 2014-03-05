@@ -14,6 +14,7 @@
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
         <converters:TeamImageBitmapConverter x:Key="TeamImageBitmapConverter"></converters:TeamImageBitmapConverter>
+         
     </Page.Resources>
 
     <!--
@@ -61,7 +62,7 @@
                     </Grid>
                 </DataTemplate>
             </HubSection>
-            <HubSection Width="1540" Header="Teams">
+            <HubSection Width="Auto" Header="Teams">
                 <DataTemplate>
                     <GridView
                         x:Name="TeamsGridView"
@@ -100,14 +101,11 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel x:Name="LeftPanel" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
                     <AppBarButton x:Uid="Add" Icon="Add" Label="Add Team" x:Name="AddTeamButton" Click="AddTeamButton_OnClick" />
+                    <AppBarButton x:Uid="ImportTeams" Icon="Import" Label="Import Teams" x:Name="ImportTeamsButton" Click="ImportTeamsButton_OnClick" />
+                </StackPanel>
+                <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                     <AppBarButton x:Uid="Save" Icon="Save" Label="Save" x:Name="SaveButton" Click="SaveButton_OnClick"/>
                 </StackPanel>
-                <!--<StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                    <AppBarButton x:Uid="Add" Icon="Add" Label="Add" />
-                    <AppBarButton x:Uid="Remove" Icon="Remove" Label="Remove"/>
-                    <AppBarSeparator/>
-                    <AppBarButton x:Uid="Delete" Icon="Delete" Label="Delete"/>
-                </StackPanel>-->
             </Grid>
         </AppBar>
     </Page.BottomAppBar>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Team537.Scouting.Model
 {
     [Flags]
-    public enum WheelType
+    public enum WheelType : uint
     {
         Traction = 1,
         Omni = 2,
