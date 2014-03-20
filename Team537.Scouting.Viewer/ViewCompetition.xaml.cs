@@ -146,14 +146,15 @@ namespace Team537.Scouting.Viewer
             CompetitionDataStorage.SaveCompetition(this.defaultViewModel.Competition);
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ViewMatchButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!e.AddedItems.Any())
+            var button = sender as Button;
+            if (button == null)
             {
                 return;
             }
 
-            var match = e.AddedItems.First() as Match;
+            var match = button.DataContext as Match;
             this.Frame.Navigate(typeof(ViewMatch), match);
         }
     }

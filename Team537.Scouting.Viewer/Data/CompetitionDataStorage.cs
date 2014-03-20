@@ -17,7 +17,7 @@ namespace Team537.Scouting.Viewer.Data
         public static async Task SaveCompetition(Competition competition)
         {
             var filename = string.Format("{0}2014.json", competition.Name.Replace(" ", string.Empty));
-            var data = JsonConvert.SerializeObject(competition);
+            var data = JsonConvert.SerializeObject(competition, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
             var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, data);
@@ -31,7 +31,7 @@ namespace Team537.Scouting.Viewer.Data
             {
                 var file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
                 var data = await FileIO.ReadTextAsync(file);
-                return JsonConvert.DeserializeObject<Competition>(data);
+                return JsonConvert.DeserializeObject<Competition>(data, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
             }
             catch (Exception)
             {

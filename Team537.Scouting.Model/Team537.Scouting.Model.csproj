@@ -33,21 +33,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Competition.cs" />
     <Compile Include="DriveTrainType.cs" />
+    <Compile Include="HumanPlayerPosition.cs" />
+    <Compile Include="Import\AutonomousData.cs" />
+    <Compile Include="Import\ImportModel.cs" />
+    <Compile Include="Import\ImportNameResolver.cs" />
+    <Compile Include="Import\MatchImportModel.cs" />
+    <Compile Include="Import\MatchImportScoutingData2014.cs" />
+    <Compile Include="Import\TeamMetadata.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchScoutingData2014.cs" />
+    <Compile Include="MatchSummaryData2014.cs" />
     <Compile Include="MatchType.cs" />
     <Compile Include="NotifyObject.cs" />
     <Compile Include="PitData2014.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RobotSide.cs" />
+    <Compile Include="StartingPosition.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="WheelType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -67,12 +67,19 @@ namespace Team537.Scouting.Viewer
         /// session.  The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            var competition = new Competition
+            var crossroads = new Competition
                                   {
                                       Name = "Crossroads Regional",
                                       Location = "Terre Haute, IN",
                                       ImagePath = "Assets/Competitions/crossroads.jpg"
                                   };
+
+            var wisconsin = new Competition
+            {
+                Name = "Wisconsin Regional",
+                Location = "Milwaukee, WI",
+                ImagePath = "Assets/Competitions/wisconsin.jpg"
+            };
 
             //competition.Matches.Add(new Match { MatchNumber = 1, MatchType = MatchType.Practive });
 
@@ -81,7 +88,8 @@ namespace Team537.Scouting.Viewer
             //competition.Teams.Add(new Team { Number = 128, Name = "American Electric Power/Grandview Heights Marble Cliff Education Foundation & Grandview Heights High School", ImagePath = null });
             //competition.Teams.Add(new Team { Number = 537, Name = "Charger Robotics", ImagePath = null });
 
-            this.defaultViewModel.Competitions.Add(competition);
+            this.defaultViewModel.Competitions.Add(wisconsin);
+            this.defaultViewModel.Competitions.Add(crossroads);
         }
 
         #region NavigationHelper registration

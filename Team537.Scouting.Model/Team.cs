@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 
 namespace Team537.Scouting.Model
 {
+    using Newtonsoft.Json;
+
     public class Team : NotifyObject
     {
         private int number;
@@ -14,6 +16,8 @@ namespace Team537.Scouting.Model
         private string name;
 
         private string imagePath;
+
+        private MatchSummaryData2014 matchSummaryData;
 
         public int Number
         {
@@ -65,10 +69,28 @@ namespace Team537.Scouting.Model
                 this.OnPropertyChanged();
             }
         }
-
+        
         public PitData2014 PitData2014 { get; set; }
 
         public ObservableCollection<MatchScoutingData2014> MatchData2014 { get; private set; }
+
+        [JsonIgnore]
+        public MatchSummaryData2014 MatchSummaryData
+        {
+            get
+            {
+                return this.matchSummaryData;
+            }
+            set
+            {
+                if (Equals(value, this.matchSummaryData))
+                {
+                    return;
+                }
+                this.matchSummaryData = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public Team()
         {

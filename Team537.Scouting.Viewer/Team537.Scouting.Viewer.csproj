@@ -152,6 +152,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Competitions\wisconsin.jpg" />
+    <Content Include="Assets\matches.json" />
     <None Include="packages.config" />
     <None Include="Team537.Scouting.Viewer_TemporaryKey.pfx" />
   </ItemGroup>

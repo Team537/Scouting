@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Team537.Scouting.Viewer
 {
     using Team537.Scouting.Model;
+    using Team537.Scouting.Viewer.Data;
 
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
@@ -108,14 +109,38 @@ namespace Team537.Scouting.Viewer
 
         #endregion
 
-        private void ImportButton_OnClick(object sender, RoutedEventArgs e)
+        private async void ImportButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var team537 = competition.Teams.Single(t => t.Number == 537);
-            competition.Matches.Add(new Match { MatchNumber = 1, Red1 = team537, Red2 = team537, Red3 = team537, Blue1 = team537, Blue2 = team537, Blue3 = team537 });
-            competition.Matches.Add(new Match { MatchNumber = 1, Red1 = team537, Red2 = team537, Red3 = team537, Blue1 = team537, Blue2 = team537, Blue3 = team537 });
-            competition.Matches.Add(new Match { MatchNumber = 1, Red1 = team537, Red2 = team537, Red3 = team537, Blue1 = team537, Blue2 = team537, Blue3 = team537 });
-            competition.Matches.Add(new Match { MatchNumber = 1, Red1 = team537, Red2 = team537, Red3 = team537, Blue1 = team537, Blue2 = team537, Blue3 = team537 });
-            competition.Matches.Add(new Match { MatchNumber = 1, Red1 = team537, Red2 = team537, Red3 = team537, Blue1 = team537, Blue2 = team537, Blue3 = team537 });
+            //var team = new Team() { Number = 537 };
+            //this.competition.Teams.Add(team);
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+            //this.competition.Matches.Add(new Match { MatchNumber = 1, Blue1 = team, Blue2 = team, Blue3 = team, Red1 = team, Red2 = team, Red3 = team });
+
+            if (OverwriteMatchData.IsChecked.GetValueOrDefault())
+            {
+                this.competition.Teams.Clear();
+            }
+
+            if (OverwriteSchedule.IsChecked.GetValueOrDefault())
+            {
+                this.competition.Matches.Clear();
+            }
+
+            var matchData = await MatchDataImporter.ImportRemoteData(this.competition, MatchDataUrl.Text);
+
+            MatchDataImporter.ImportSchedule(this.competition, matchData);
+
+            MatchDataImporter.ImportMatchData(this.competition, matchData);
+
+            NavigationHelper.GoBack();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Team537.Scouting.Viewer.ViewModels
 {
+    using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Media.Imaging;
 
     using Team537.Scouting.Model;
@@ -14,7 +15,7 @@ namespace Team537.Scouting.Viewer.ViewModels
     {
         private Team team;
 
-        private BitmapImage teamImage;
+        private ImageSource teamImage;
 
         public Team Team
         {
@@ -37,7 +38,7 @@ namespace Team537.Scouting.Viewer.ViewModels
             }
         }
 
-        public BitmapImage TeamImage
+        public ImageSource TeamImage
         {
             get
             {

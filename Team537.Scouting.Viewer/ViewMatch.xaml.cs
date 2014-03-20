@@ -30,6 +30,8 @@ namespace Team537.Scouting.Viewer
         private NavigationHelper navigationHelper;
         private ViewMatchViewModel defaultViewModel = new ViewMatchViewModel();
 
+        private int numberOfMatches = 5;
+
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
@@ -70,7 +72,13 @@ namespace Team537.Scouting.Viewer
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             var match = e.NavigationParameter as Match;
+            if (match == null)
+            {
+                return;
+            }
+
             this.defaultViewModel.Match = match;
+            this.LoadMatches(0);
         }
 
         /// <summary>
@@ -107,5 +115,27 @@ namespace Team537.Scouting.Viewer
         }
 
         #endregion
+
+        private void LoadMatches(int matches)
+        {
+            this.defaultViewModel.Match.Red1.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Red1, matches);
+            this.defaultViewModel.Match.Red2.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Red2, matches);
+            this.defaultViewModel.Match.Red3.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Red3, matches);
+
+            this.defaultViewModel.Match.Blue1.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Blue1, matches);
+            this.defaultViewModel.Match.Blue2.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Blue2, matches);
+            this.defaultViewModel.Match.Blue3.MatchSummaryData = MatchSummaryData2014.Calculate(this.defaultViewModel.Match.Blue3, matches);
+        }
+
+        private void MatchCountSlider_OnValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            var source = sender as Slider;
+            if (source == null)
+            {
+                return;
+            }
+
+            this.LoadMatches((int)source.Value);
+        }
     }
 }

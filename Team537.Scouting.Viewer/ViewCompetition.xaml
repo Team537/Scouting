@@ -47,20 +47,21 @@
             </Hub.Header>
 
             <HubSection Width="780" Margin="0,0,80,0" Header="Matches">
-                <HubSection.Background>
-                    <ImageBrush Stretch="UniformToFill" />
-                </HubSection.Background>
                 <DataTemplate>
-                    <StackPanel>
-                        <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Match" Grid.Column="0"  TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
@@ -72,18 +73,20 @@
                             <TextBlock Text="Blue 3" Grid.Column="6" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
                             <TextBlock Text="Action" Grid.Column="7" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" />
                         </Grid>
-                        <ListView ItemsSource="{Binding Competition.Matches}" SelectionMode="Single" x:Name="MatchList" SelectionChanged="Selector_OnSelectionChanged">
+                        
+                        <ListView ItemsSource="{Binding Competition.Matches}" SelectionMode="Single" x:Name="MatchList"
+                                  Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
                                             <ColumnDefinition Width="100"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock TextAlignment="Center" Text="{Binding MatchNumber}" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" />
@@ -93,12 +96,12 @@
                                         <TextBlock TextAlignment="Center" Text="{Binding Blue1.Number}" Grid.Column="4" />
                                         <TextBlock TextAlignment="Center" Text="{Binding Blue2.Number}" Grid.Column="5" />
                                         <TextBlock TextAlignment="Center" Text="{Binding Blue3.Number}" Grid.Column="6" />
-                                        <Button Grid.Column="7">View</Button>
+                                        <Button Grid.Column="7" x:Name="ViewMatchButton" Click="ViewMatchButton_OnClick">View</Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
             <HubSection Width="Auto" Header="Teams">

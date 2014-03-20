@@ -14,8 +14,10 @@
     <Page.Resources>
         <Style x:Key="GridTextStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Padding" Value="10"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
         <Style x:Key="GridLabelTextStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
@@ -24,6 +26,8 @@
             <Setter Property="FontWeight" Value="Bold"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
+        <SolidColorBrush x:Key="RedBackground" Color="DarkRed" Opacity="0.5" />
+        <SolidColorBrush x:Key="BlueBackground" Color="DarkBlue" Opacity="0.5" />
         <converters:TeamImageBitmapConverter x:Key="TeamImageBitmapConverter"></converters:TeamImageBitmapConverter>
     </Page.Resources>
 
@@ -40,122 +44,585 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-                <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="10" Background="DarkRed"></Border>
-                <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="10" Background="DarkBlue"></Border>
+            <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Background="{StaticResource RedBackground}"></Border>
+            <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Background="{StaticResource BlueBackground}"></Border>
 
-                <TextBlock Grid.Column="1" TextAlignment="Center" Margin="20" Text="{Binding Match.Red1.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" TextAlignment="Center" Margin="20" Text="{Binding Match.Red2.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" TextAlignment="Center" Margin="20" Text="{Binding Match.Red3.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" TextAlignment="Center" Margin="20" Text="{Binding Match.Blue1.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" TextAlignment="Center" Margin="20" Text="{Binding Match.Blue2.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" TextAlignment="Center" Margin="20"  Text="{Binding Match.Blue3.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Name" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="1"  Text="{Binding Match.Blue3.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Picture" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <Image Grid.Column="1" Grid.Row="2" Source="{Binding Match.Red1.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red1.Number}"/>
-                <Image Grid.Column="2" Grid.Row="2" Source="{Binding Match.Red2.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red2.Number}"/>
-                <Image Grid.Column="3" Grid.Row="2" Source="{Binding Match.Red3.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red3.Number}"/>
-                <Image Grid.Column="4" Grid.Row="2" Source="{Binding Match.Blue1.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue1.Number}"/>
-                <Image Grid.Column="5" Grid.Row="2" Source="{Binding Match.Blue2.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue2.Number}"/>
-                <Image Grid.Column="6" Grid.Row="2" Source="{Binding Match.Blue3.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue3.Number}"/>
-
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Drive Train" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="3"  Text="{Binding Match.Blue3.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="Wheels" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Match.Red1.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding Match.Red2.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding Match.Red3.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="4" Text="{Binding Match.Blue1.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="4" Text="{Binding Match.Blue2.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="4"  Text="{Binding Match.Blue3.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="5" Text="Collector" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Match.Red1.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="5" Text="{Binding Match.Red2.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Match.Red3.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="5" Text="{Binding Match.Blue1.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="5" Text="{Binding Match.Blue2.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="5" Text="{Binding Match.Blue3.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="6" Text="Shooter" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Match.Red1.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="6" Text="{Binding Match.Red2.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="6" Text="{Binding Match.Red3.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="6" Text="{Binding Match.Blue1.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="6" Text="{Binding Match.Blue2.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="6" Text="{Binding Match.Blue3.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                
-                <TextBlock Grid.Column="0" Grid.Row="7" Text="Goalie" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Match.Red1.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="7" Text="{Binding Match.Red2.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="7" Text="{Binding Match.Red3.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="7" Text="{Binding Match.Blue1.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="7" Text="{Binding Match.Blue2.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="7" Text="{Binding Match.Blue3.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="8" Text="Size" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding Match.Red1.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="8" Text="{Binding Match.Red2.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="8" Text="{Binding Match.Red3.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="8" Text="{Binding Match.Blue1.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="8" Text="{Binding Match.Blue2.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="8" Text="{Binding Match.Blue3.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
-
-                <TextBlock Grid.Column="0" Grid.Row="9" Text="Pit Comments" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding Match.Red1.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="9" Text="{Binding Match.Red2.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="9" Text="{Binding Match.Red3.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="4" Grid.Row="9" Text="{Binding Match.Blue1.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="5" Grid.Row="9" Text="{Binding Match.Blue2.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="9" Text="{Binding Match.Blue3.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
-            </Grid>
+            <TextBlock Grid.Column="1" TextAlignment="Center" Margin="20" Text="{Binding Match.Red1.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Column="2" TextAlignment="Center" Margin="20" Text="{Binding Match.Red2.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Column="3" TextAlignment="Center" Margin="20" Text="{Binding Match.Red3.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Column="4" TextAlignment="Center" Margin="20" Text="{Binding Match.Blue1.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Column="5" TextAlignment="Center" Margin="20" Text="{Binding Match.Blue2.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Column="6" TextAlignment="Center" Margin="20"  Text="{Binding Match.Blue3.Number}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
         </Grid>
+            
+        <ScrollViewer Grid.Row="2" HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource BlueBackground}"></Border>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Name" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1"  Text="{Binding Match.Blue3.Name}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Picture" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <Image Grid.Column="1" Grid.Row="2" Source="{Binding Match.Red1.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red1.Number}"/>
+                    <Image Grid.Column="2" Grid.Row="2" Source="{Binding Match.Red2.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red2.Number}"/>
+                    <Image Grid.Column="3" Grid.Row="2" Source="{Binding Match.Red3.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Red3.Number}"/>
+                    <Image Grid.Column="4" Grid.Row="2" Source="{Binding Match.Blue1.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue1.Number}"/>
+                    <Image Grid.Column="5" Grid.Row="2" Source="{Binding Match.Blue2.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue2.Number}"/>
+                    <Image Grid.Column="6" Grid.Row="2" Source="{Binding Match.Blue3.ImagePath, Converter={StaticResource TeamImageBitmapConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Match.Blue3.Number}"/>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="8" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="8" Background="{StaticResource BlueBackground}"></Border>
+                    
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Pit Data</TextBlock>
+                
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Drive Train" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1"  Text="{Binding Match.Blue3.PitData2014.DriveTrainType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Wheels" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Match.Red1.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Match.Red2.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Match.Red3.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{Binding Match.Blue1.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Match.Blue2.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2"  Text="{Binding Match.Blue3.PitData2014.WheelType}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Collector" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Match.Blue3.PitData2014.CollectorSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Shooter" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Match.Red1.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding Match.Red2.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding Match.Red3.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="4" Text="{Binding Match.Blue1.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="4" Text="{Binding Match.Blue2.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="4" Text="{Binding Match.Blue3.PitData2014.ShooterSide}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Goalie" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Match.Red1.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Text="{Binding Match.Red2.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Match.Red3.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="5" Text="{Binding Match.Blue1.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="5" Text="{Binding Match.Blue2.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="5" Text="{Binding Match.Blue3.PitData2014.GoalieDescription}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="Size" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Match.Red1.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="6" Text="{Binding Match.Red2.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="6" Text="{Binding Match.Red3.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="6" Text="{Binding Match.Blue1.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="6" Text="{Binding Match.Blue2.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="6" Text="{Binding Match.Blue3.PitData2014.Size}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="Pit Comments" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Red1.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Red2.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Red3.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Blue1.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Blue2.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Match.Blue3.PitData2014.Comments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="3" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="3" Background="{StaticResource BlueBackground}"></Border>
+                    
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Set Up</TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Auto Side" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Text="{Binding Match.Blue3.MatchSummaryData.StartingPositionSidePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Auto Middle" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Match.Red1.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Match.Red2.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Match.Red3.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{Binding Match.Blue1.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Match.Blue2.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" Text="{Binding Match.Blue3.MatchSummaryData.StartingPositionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Background="{StaticResource BlueBackground}"></Border>
+                    
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Autonomous</TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="High Goal (Hot)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red1.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red2.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red3.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue1.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue2.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue3.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousHigh}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousHighHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Low Goal (Hot)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red1.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red2.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Red3.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue1.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue2.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" Style="{StaticResource GridTextStyle}" DataContext="{Binding Match.Blue3.MatchSummaryData}">
+                        <Run Text="{Binding AutonomousLow}"></Run>
+                        <Run Text=" ("></Run>
+                        <Run Text="{Binding AutonomousLowHotPct}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Mobility (rate)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Match.Blue3.MatchSummaryData.MobilityPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource BlueBackground}"></Border>
+                    
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Offensive</TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="High Goal (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedHighPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="High Goal (pct)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedHighPercent}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Low Goal (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedLowPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Truss (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="4" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="4" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="4" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedTrussPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Catch (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="5" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="5" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="5" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedCatchPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="6" Background="{StaticResource BlueBackground}"></Border>
+                    
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Posessions</TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Count (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Text="{Binding Match.Blue3.MatchSummaryData.PossessionCount}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Balls Lost (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Match.Red1.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Match.Red2.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Match.Red3.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{Binding Match.Blue1.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Match.Blue2.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" Text="{Binding Match.Blue3.MatchSummaryData.TeleOperatedBallsLost}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Front (pct)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Match.Blue3.MatchSummaryData.PosessionFrontPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Middle (pct)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Match.Red1.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding Match.Red2.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding Match.Red3.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="4" Text="{Binding Match.Blue1.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="4" Text="{Binding Match.Blue2.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="4" Text="{Binding Match.Blue3.MatchSummaryData.PosessionMiddlePct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Back (pct)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Match.Red1.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Text="{Binding Match.Red2.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Match.Red3.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="5" Text="{Binding Match.Blue1.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="5" Text="{Binding Match.Blue2.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="5" Text="{Binding Match.Blue3.MatchSummaryData.PosessionBackPct}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Background="{StaticResource BlueBackground}"></Border>
+
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Defense</TextBlock>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Shots Defended (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Text="{Binding Match.Blue3.MatchSummaryData.ShotsDefendedPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Defensive Contacts (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Match.Red1.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding Match.Red2.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Match.Red3.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="{Binding Match.Blue1.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Match.Blue2.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" Text="{Binding Match.Blue3.MatchSummaryData.RobotContactsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Robot Pins (pm)" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Match.Red1.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding Match.Red2.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding Match.Red3.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="{Binding Match.Blue1.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Match.Blue2.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" Text="{Binding Match.Blue3.MatchSummaryData.PinnedOpponentsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Background="{StaticResource BlueBackground}"></Border>
+
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Other</TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Fouls Per Match" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Match.Red1.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Match.Red2.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Match.Red3.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Match.Blue1.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Match.Blue2.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" Text="{Binding Match.Blue3.MatchSummaryData.FoulsPerMatch}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+
+                </Grid>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="5" Background="{StaticResource RedBackground}"></Border>
+                    <Border Grid.Column="4" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="5" Background="{StaticResource BlueBackground}"></Border>
+
+                    <Border Background="DarkGray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"></Border>
+                    <TextBlock Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource GridLabelTextStyle}">Comments</TextBlock>
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Overall" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Red1.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Red2.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Red3.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Blue1.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Blue2.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Match.Blue3.MatchSummaryData.OverallComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Manuverability" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Red1.MatchSummaryData.ManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Red2.MatchSummaryData.ManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Red3.MatchSummaryData.ManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Blue1.MatchSummaryData.OverallCommentsManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Blue2.MatchSummaryData.ManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Match.Blue3.MatchSummaryData.ManuverabilityComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Shooter" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Red1.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Red2.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Red3.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Blue1.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Blue2.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Match.Blue3.MatchSummaryData.ShooterComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Collector" Style="{StaticResource GridLabelTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Red1.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Red2.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="3" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Red3.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="4" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Blue1.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="5" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Blue2.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                    <TextBlock Grid.Column="6" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Match.Blue3.MatchSummaryData.CollectorComments}" Style="{StaticResource GridTextStyle}"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
         
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="240"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -165,6 +632,10 @@
                         AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock x:Name="pageTitle" Text="{Binding Match.MatchNumber}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Match Count" IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                <Slider Minimum="0" Maximum="20" x:Name="MatchCountSlider" SnapsTo="StepValues" StepFrequency="1" ValueChanged="MatchCountSlider_OnValueChanged"></Slider>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

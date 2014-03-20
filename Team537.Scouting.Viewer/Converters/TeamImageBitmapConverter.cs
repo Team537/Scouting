@@ -29,11 +29,17 @@ namespace Team537.Scouting.Viewer.Converters
 
         private async void SetImageSource(BitmapImage bitmapImage, string imagePath)
         {
-            var frcFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("FRC", CreationCollisionOption.OpenIfExists);
-            var yearFolder = await frcFolder.CreateFolderAsync("2014", CreationCollisionOption.OpenIfExists);
-            var imageFile = await yearFolder.GetFileAsync(imagePath);
+            try
+            {
+                var frcFolder = await KnownFolders.PicturesLibrary.GetFolderAsync("FRC");
+                var yearFolder = await frcFolder.GetFolderAsync("2014");
+                var imageFile = await yearFolder.GetFileAsync(imagePath);
 
-            await bitmapImage.SetSourceAsync(await imageFile.OpenReadAsync());
+                await bitmapImage.SetSourceAsync(await imageFile.OpenReadAsync());
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

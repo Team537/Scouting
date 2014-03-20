@@ -30,7 +30,9 @@
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="1">
-            <TextBox Text="" x:Name="MatchDataUrl"></TextBox>
+            <TextBox Text="http://10.5.3.7/scouting/json/flat.php" x:Name="MatchDataUrl"></TextBox>
+            <CheckBox x:Name="OverwriteSchedule">Overwrite Schedule</CheckBox>
+            <CheckBox x:Name="OverwriteMatchData">Overwrite Match Data</CheckBox>
             <Button x:Name="ImportButton" Click="ImportButton_OnClick">Import</Button>
         </StackPanel>
 
