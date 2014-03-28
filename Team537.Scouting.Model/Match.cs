@@ -5,8 +5,11 @@ using System.Text;
 
 namespace Team537.Scouting.Model
 {
+    using Newtonsoft.Json;
+
     public class Match : NotifyObject
     {
+        [JsonIgnore]
         public Competition Competition { get; set; }
         public MatchType MatchType { get; set; }
         public int MatchNumber { get; set; }

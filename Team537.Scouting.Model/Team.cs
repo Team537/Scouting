@@ -11,6 +11,9 @@ namespace Team537.Scouting.Model
 
     public class Team : NotifyObject
     {
+        [JsonIgnore]
+        public Competition Competition { get; set; }
+
         private int number;
 
         private string name;

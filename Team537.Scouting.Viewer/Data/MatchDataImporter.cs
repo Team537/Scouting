@@ -96,10 +96,10 @@ namespace Team537.Scouting.Viewer.Data
                     }
 
                     // autonomous
-                    match.AutonomousHigh = rawMatch.Value.AutonomousScoring == "high" ? 1 : 0;
-                    match.AutonomousHighHot = rawMatch.Value.AutonomousScoring == "high-hot" ? 1 : 0;
-                    match.AutonomousLow = rawMatch.Value.AutonomousScoring == "low" ? 1 : 0;
-                    match.AutonomousLowHot = rawMatch.Value.AutonomousScoring == "low-hot" ? 1 : 0;
+                    match.AutonomousHigh = rawMatch.Value.AutonomousHigh;
+                    match.AutonomousHighHot = rawMatch.Value.AutonomousHighHot;
+                    match.AutonomousLow = rawMatch.Value.AutonomousLow;
+                    match.AutonomousLowHot = rawMatch.Value.AutonomousLowHot;
                     match.Mobility = rawMatch.Value.Mobility == "yes";
                     
                     // overall
@@ -141,6 +141,7 @@ namespace Team537.Scouting.Viewer.Data
                     // comments
                     match.ManuverabilityComments = rawMatch.Value.ManuverabilityComments;
                     match.CollectorComments = rawMatch.Value.CollectorComments;
+                    
                     match.ShooterComments = rawMatch.Value.ShooterComments;
                     match.OverallComments = rawMatch.Value.OverallComments;
                 }

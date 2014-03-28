@@ -11,7 +11,7 @@ namespace Team537.Scouting.Model
         public static MatchSummaryData2014 Calculate(Team team, int matchesToInclude)
         {
             var summaryData = new MatchSummaryData2014();
-            var matchData = matchesToInclude > 0 ? team.MatchData2014.OrderBy(t => t.MatchNumber).Take(matchesToInclude).ToArray() : team.MatchData2014.ToArray();
+            var matchData = matchesToInclude > 0 ? team.MatchData2014.OrderByDescending(t => t.MatchNumber).Take(matchesToInclude).ToArray() : team.MatchData2014.ToArray();
             var matchCount = matchData.Length;
 
             if (matchCount == 0)
@@ -20,7 +20,7 @@ namespace Team537.Scouting.Model
             }
 
             summaryData.MatchCount = matchCount;
-
+            
             // set up
             summaryData.StartingPositionSidePct = matchData.Count(m => m.StartingPosition == StartingPosition.Side) / (double)matchCount;
             summaryData.StartingPositionMiddlePct = matchData.Count(m => m.StartingPosition == StartingPosition.Middle) / (double)matchCount;
@@ -28,10 +28,10 @@ namespace Team537.Scouting.Model
 
             // autonomous
             summaryData.MobilityPct = matchData.Count(m => m.Mobility) / (double)matchCount;
-            summaryData.AutonomousHigh = matchData.Sum(m => m.AutonomousHigh + m.AutonomousHighHot);
+            summaryData.AutonomousHighPct = matchData.Sum(m => m.AutonomousHigh + m.AutonomousHighHot) / (double)matchCount;
             summaryData.AutonomousHighHotPct = summaryData.AutonomousHigh > 0 ? matchData.Sum(m => m.AutonomousHighHot) / (double)summaryData.AutonomousHigh : 0;
 
-            summaryData.AutonomousLow = matchData.Sum(m => m.AutonomousLow + m.AutonomousLowHot);
+            summaryData.AutonomousLowPct = matchData.Sum(m => m.AutonomousLow + m.AutonomousLowHot) / (double)matchCount;
             summaryData.AutonomousLowHotPct = summaryData.AutonomousLow > 0 ? matchData.Sum(m => m.AutonomousLowHot) / (double)summaryData.AutonomousLow : 0;
 
             // offensive
@@ -67,13 +67,17 @@ namespace Team537.Scouting.Model
             summaryData.FoulsPerMatch = matchData.Sum(m => m.Fouls) / (double)matchCount;
 
             // comments
-            summaryData.OverallComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.Select(m => m.OverallComments));
-            summaryData.ManuverabilityComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.Select(m => m.ManuverabilityComments));
-            summaryData.ShooterComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.Select(m => m.ShooterComments));
-            summaryData.CollectorComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.Select(m => m.CollectorComments));
+            summaryData.OverallComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.OrderByDescending(m => m.MatchNumber).Take(matchesToInclude).Select(m => m.OverallComments));
+            summaryData.ManuverabilityComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.OrderByDescending(m => m.MatchNumber).Take(matchesToInclude).Select(m => m.ManuverabilityComments));
+            summaryData.ShooterComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.OrderByDescending(m => m.MatchNumber).Take(matchesToInclude).Select(m => m.ShooterComments));
+            summaryData.CollectorComments = string.Join(Environment.NewLine + "-------" + Environment.NewLine, matchData.OrderByDescending(m => m.MatchNumber).Take(matchesToInclude).Select(m => m.CollectorComments));
 
             return summaryData;
         }
+
+        public double AutonomousLowPct { get; set; }
+
+        public double AutonomousHighPct { get; set; }
 
         public string CollectorComments { get; set; }
 

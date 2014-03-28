@@ -137,5 +137,23 @@ namespace Team537.Scouting.Viewer
 
             this.LoadMatches((int)source.Value);
         }
+
+        private void TeamDetailsClick(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            var team = button.DataContext as Team;
+            if (team == null)
+            {
+                return;
+            }
+
+            team.Competition = this.defaultViewModel.Match.Competition;
+            this.Frame.Navigate(typeof(TeamHub), team);
+        }
     }
 }

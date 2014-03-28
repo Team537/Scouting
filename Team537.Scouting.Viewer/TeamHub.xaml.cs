@@ -17,26 +17,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Team537.Scouting.Viewer
 {
-    using System.Threading.Tasks;
-
-    using Windows.UI.Popups;
-
     using Team537.Scouting.Model;
-    using Team537.Scouting.Viewer.Data;
     using Team537.Scouting.Viewer.ViewModels;
 
     /// <summary>
     /// A page that displays a grouped collection of items.
     /// </summary>
-    public sealed partial class ViewCompetition : Page
+    public sealed partial class TeamHub : Page
     {
         private NavigationHelper navigationHelper;
-        private ViewCompetitionViewModel defaultViewModel = new ViewCompetitionViewModel();
+        private TeamHubViewModel defaultViewModel = new TeamHubViewModel();
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
-        public ViewCompetitionViewModel DefaultViewModel
+        public TeamHubViewModel DefaultViewModel
         {
             get { return this.defaultViewModel; }
         }
@@ -50,7 +45,7 @@ namespace Team537.Scouting.Viewer
             get { return this.navigationHelper; }
         }
 
-        public ViewCompetition()
+        public TeamHub()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -69,30 +64,24 @@ namespace Team537.Scouting.Viewer
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            if (this.defaultViewModel.Competition != null)
+            var team = e.NavigationParameter as Team;
+            if (team == null)
             {
-                this.defaultViewModel.Competition.SortTeams();
                 return;
             }
 
-            var competition = e.NavigationParameter as Competition;
+            this.defaultViewModel.Team = team;
 
-            if (competition == null)
+            var teamNumber = team.Number;
+            var schedule = team.Competition.Matches.Where(m => m.Blue1.Number == teamNumber || m.Blue2.Number == teamNumber || m.Blue3.Number == teamNumber
+                || m.Red1.Number == teamNumber || m.Red2.Number == teamNumber || m.Red3.Number == teamNumber);
+
+            foreach (var match in schedule)
             {
-                var dialog = new MessageDialog("Invalid Competition Selected");
-                await dialog.ShowAsync();
-                return;
+                this.defaultViewModel.Schedule.Add(match);
             }
-
-            if (!competition.Matches.Any() || !competition.Teams.Any())
-            {
-                competition = await CompetitionDataStorage.LoadCompetition(competition);
-                competition.SortTeams();
-            }
-
-            this.defaultViewModel.Competition = competition;
         }
 
         #region NavigationHelper registration
@@ -117,46 +106,5 @@ namespace Team537.Scouting.Viewer
         }
 
         #endregion
-
-        private void TeamsGridView_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            var team = e.ClickedItem as Team;
-            this.Frame.Navigate(typeof(TeamDetails), team);
-        }
-
-        private void AddTeamButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var team = new Team();
-            this.defaultViewModel.Competition.Teams.Add(team);
-            this.Frame.Navigate(typeof(TeamDetails), team);
-        }
-
-        private async void ImportTeamsButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ImportTeams), this.defaultViewModel.Competition);
-        }
-
-        private async void ImportMatchButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ImportMatchData), this.defaultViewModel.Competition);
-        }
-
-        private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            CompetitionDataStorage.SaveCompetition(this.defaultViewModel.Competition);
-        }
-
-        private void ViewMatchButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            if (button == null)
-            {
-                return;
-            }
-
-            var match = button.DataContext as Match;
-            match.Competition = this.defaultViewModel.Competition;
-            this.Frame.Navigate(typeof(ViewMatch), match);
-        }
     }
 }

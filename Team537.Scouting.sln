@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Team537.Scouting.Viewer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Team537.Scouting.Model", "Team537.Scouting.Model\Team537.Scouting.Model.csproj", "{E5F8EA26-AD04-48F0-BA1C-CBE350954693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDataImporter", "RawDataImporter\RawDataImporter.csproj", "{68D2CE74-310D-4BE5-8D59-E286395F1855}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,16 @@ Global
 		{E5F8EA26-AD04-48F0-BA1C-CBE350954693}.Release|ARM.ActiveCfg = Release|Any CPU
 		{E5F8EA26-AD04-48F0-BA1C-CBE350954693}.Release|x64.ActiveCfg = Release|Any CPU
 		{E5F8EA26-AD04-48F0-BA1C-CBE350954693}.Release|x86.ActiveCfg = Release|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Release|ARM.ActiveCfg = Release|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Release|x64.ActiveCfg = Release|Any CPU
+		{68D2CE74-310D-4BE5-8D59-E286395F1855}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

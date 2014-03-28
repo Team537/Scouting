@@ -12,8 +12,20 @@ namespace Team537.Scouting.Model
     {
         public int MatchNumber { get; set; }
 
-        [JsonProperty("autonomous-scoring")]
-        public string AutonomousScoring { get; set; }
+        [JsonProperty("autonomous-scoring-3-high-hot")]
+        public int AutonomousHighHot { get; set; }
+
+        [JsonProperty("autonomous-scoring-3-high")]
+        public int AutonomousHigh { get; set; }
+
+        [JsonProperty("autonomous-scoring-3-low-hot")]
+        public int AutonomousLowHot { get; set; }
+
+        [JsonProperty("autonomous-scoring-3-low")]
+        public int AutonomousLow { get; set; }
+
+        [JsonProperty("autonomous-scoring-3-none")]
+        public int AutonomousNone { get; set; }
 
         [JsonProperty("autonomous-mobility")]
         public string Mobility { get; set; }
@@ -32,6 +44,9 @@ namespace Team537.Scouting.Model
 
         [JsonProperty("teleoperated-truss-truss")]
         public int TeleOperatedTruss { get; set; }
+
+        [JsonProperty("teleoperated-truss-truss-fail")]
+        public int TeleOperatedTrussFail { get; set; }
 
         [JsonProperty("teleoperated-catch-catch")]
         public int TeleOperatedCatch { get; set; }

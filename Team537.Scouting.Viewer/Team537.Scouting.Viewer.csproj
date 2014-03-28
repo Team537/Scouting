@@ -137,6 +137,9 @@
     <Compile Include="TeamDetails.xaml.cs">
       <DependentUpon>TeamDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeamHub.xaml.cs">
+      <DependentUpon>TeamHub.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewCompetition.xaml.cs">
       <DependentUpon>ViewCompetition.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,7 @@
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\TeamDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TeamHubViewModel.cs" />
     <Compile Include="ViewModels\ViewCompetitionViewModel.cs" />
     <Compile Include="ViewModels\ViewMatchViewModel.cs" />
   </ItemGroup>
@@ -189,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TeamDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeamHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
